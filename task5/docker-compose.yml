@@ -1,19 +1,20 @@
 services:
   back-end:
-    build:
-      context: ./back-end
-      dockerfile: Dockerfile
+    build: .
     ports:
       - "5252:5252"
-    container_name: back-end
+    depends_on:
+      - db
 
   front-end:
-    image: nginx:latest
+    build: ./softy-pinko-front-end
     ports:
-      - "8080:80"
-    volumes:
-      - ./softy-pinko-front-end:/var/www/html/softy-pinko-front-end
-      - ./softy-pinko-front-end.conf:/etc/nginx/conf.d/default.conf
-    container_name: softy-pinko-front-end
+      - "9000:80"
+
+  proxy:
+    build: ./proxy
+    ports:
+      - "80:80"
     depends_on:
       - back-end
+      - front-end
