@@ -1,4 +1,3 @@
-# Use the latest Ubuntu image
 FROM ubuntu:latest
 
 # Update and upgrade the system
@@ -16,11 +15,8 @@ RUN pip3 install flask flask-cors
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy the Python script to the container
 COPY ./api.py /app/api.py
 
-# Expose port 5252
 EXPOSE 5252
 
-# Run the Flask application
 CMD ["python3", "api.py"]
