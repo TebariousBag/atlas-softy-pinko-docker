@@ -7,12 +7,12 @@ services:
   back-end-1:
     build: ./back-end
     ports:
-      - "5253:5252"
+      - "5252:5252"
   
   back-end-2:
     build: ./back-end
     ports:
-      - "5254:5252"
+      - "5253:5252"
   
   proxy:
     build: ./proxy
